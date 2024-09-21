@@ -53,10 +53,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "test-migration:build:production"
+          "buildTarget": "test-migration:build:production"
         },
         "development": {
-          "browserTarget": "test-migration:build:development"
+          "buildTarget": "test-migration:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -64,31 +64,17 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "test-migration:build"
+        "buildTarget": "test-migration:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/test-migration/**/*.ts",
-          "apps/test-migration/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/test-migration/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/test-migration/jest.config.ts"
       }
     }
   }
